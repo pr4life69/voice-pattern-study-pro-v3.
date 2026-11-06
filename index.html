@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#101827"><meta name="description" content="Consent-based voice pattern research and communication study tool"><title>Voice Pattern Study Pro</title>
+<link rel="manifest" href="manifest.json"><link rel="icon" href="icons/icon-192.png"><link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar"><div class="brand"><div class="logo">〰</div><div><h1>Voice Pattern Study Pro</h1><p>Voice measurement · Communication research</p></div></div><span id="connection" class="pill">Ready</span></header>
+<main class="container">
+<section class="notice"><strong>Research safeguard</strong><p>This app measures acoustic features; it cannot determine honesty, deception, personality, mental health, or psychological state. Obtain informed consent before recording. Reports are descriptive aids for qualified professional review, not clinical assessments.</p></section>
+<section class="card"><div class="section-head"><div><h2>Study setup</h2><p>Organize a participant and a question for each recording.</p></div></div>
+<div class="grid2"><label>Study name<input id="studyName" placeholder="Communication study"></label><label>Participant ID / alias<input id="participant" placeholder="Participant 001"></label>
+<label>Recording type<select id="mode"><option>Control / Baseline</option><option>Trial / Comparison</option><option>Practice / Other</option></select></label><label>Question<select id="questionSelect"></select></label></div>
+<div class="inline-form"><input id="newQuestion" placeholder="Add a control or trial question"><button id="addQuestion">Add question</button></div><div id="questionCount" class="muted"></div>
+</section>
+<section class="card"><div class="section-head"><div><h2>Participant self-report check-in</h2><p>Optional self-reported context. These answers are not inferred from the voice.</p></div></div>
+<div class="grid2">
+<label>How calm do you feel? (1 = not at all, 5 = very calm)<select id="selfCalm"><option value="">Not answered</option><option value="1">1 — Not at all</option><option value="2">2 — A little</option><option value="3">3 — Somewhat</option><option value="4">4 — Quite</option><option value="5">5 — Very</option></select></label>
+<label>How stressed do you feel? (1 = not at all, 5 = very stressed)<select id="selfStress"><option value="">Not answered</option><option value="1">1 — Not at all</option><option value="2">2 — A little</option><option value="3">3 — Somewhat</option><option value="4">4 — Quite</option><option value="5">5 — Very</option></select></label>
+<label>How energetic do you feel? (1 = very low, 5 = very high)<select id="selfEnergy"><option value="">Not answered</option><option value="1">1 — Very low</option><option value="2">2 — Low</option><option value="3">3 — Moderate</option><option value="4">4 — High</option><option value="5">5 — Very high</option></select></label>
+<label>Context before recording<input id="selfContext" placeholder="e.g. just finished exercise, quiet room"></label>
+</div></section>
+<section class="card"><div class="section-head"><div><h2>Live voice laboratory</h2><p>Allow microphone access when prompted. Use a quiet room and consistent distance.</p></div><span id="recordState" class="pill">Not recording</span></div>
+<div class="graph-label"><span>Waveform / signal level</span><span id="volumeValue">0% level</span></div><canvas id="waveCanvas" width="900" height="150" aria-label="Live audio waveform"></canvas>
+<div class="graph-label"><span>Estimated fundamental pitch</span><span id="pitchValue">— Hz</span></div><canvas id="pitchCanvas" width="900" height="210" aria-label="Pitch over time graph"></canvas>
+<div class="metrics"><div><b id="timer">0.0s</b><small>Duration</small></div><div><b id="avgPitch">—</b><small>Mean pitch (Hz)</small></div><div><b id="pitchRange">—</b><small>Pitch range (Hz)</small></div><div><b id="pauseValue">—</b><small>Low-energy frames</small></div></div>
+<div class="buttons"><button id="startBtn" class="primary">● Start recording</button><button id="stopBtn" disabled>■ Stop</button><button id="saveBtn" disabled>Save response</button></div>
+<label>Speech transcript <span class="muted">(browser support varies; review and correct)</span><textarea id="transcript" placeholder="Recognized words may appear here. You can also type a transcript."></textarea></label>
+<label>Researcher observations<textarea id="notes" placeholder="Contextual notes: environment, microphone distance, interruptions, etc."></textarea></label>
+</section>
+<section class="card"><div class="section-head"><div><h2>Analysis & professional review</h2><p>Descriptive summary of saved measurements. No diagnosis or truth score.</p></div></div><div id="analysis" class="analysis empty">Save a response to generate a review summary.</div><h3>Psychology-informed pattern review</h3><p class="muted">A transparent on-device rules engine highlights changes for human review. It does not infer emotions or diagnose conditions.</p><div id="psychReview" class="analysis empty">Save responses to generate review prompts.</div><div class="buttons wrap"><button id="reviewBtn">Prepare psychologist review report</button><button id="csvBtn">Export CSV</button><button id="jsonBtn">Export JSON</button><button id="printBtn">Print / Save PDF</button></div></section>
+<section class="card"><div class="section-head"><div><h2>Saved responses</h2><p>Stored on this device in this browser.</p></div><button id="clearBtn" class="danger subtle">Clear all</button></div><div id="sessionList" class="session-list"></div></section>
+<section class="card"><h2>Voice profile comparison (experimental)</h2><p class="muted">Creates a descriptive acoustic reference from recordings marked Control / Baseline. It does not identify a person or verify identity.</p><div id="profileSummary" class="analysis empty">Save baseline responses to build a reference.</div></section>
+<footer>Voice Pattern Study Pro · Local-first research tool · v3.0 psychology-informed beta</footer>
+</main><script src="js/app.js"></script>
+</body></html>
